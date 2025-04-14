@@ -10,7 +10,7 @@ spec:
   sourceNamespaces:
   - argocd-workload-apps
   sourceRepos:
-  - https://github.com/sonnen/talos-example-app.git
+  - https://github.com/Francescoeman/talos-example-app.git
   destinations:
   - namespace: talos-example-app
     server: https://kubernetes.default.svc

@@ -12,5 +12,5 @@ spec:
   project: default
   source:
     path: app-manifests/argocd-workload-apps-namespaces/dev
-    repoURL: https://github.com/skynetops/talos-kubernetes-manifests.git
+    repoURL: https://github.com/Francescoeman/talos-kubernetes-manifests.git
     targetRevision: HEAD

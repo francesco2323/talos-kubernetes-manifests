@@ -12,7 +12,7 @@ spec:
   project: default
   sources:
   - path: argocd-apps/dev
-    repoURL: https://github.com/skynetops/talos-example-app.git
+    repoURL: https://github.com/Francescoeman/talos-example-app.git
     targetRevision: HEAD
     directory:
       recurse: true

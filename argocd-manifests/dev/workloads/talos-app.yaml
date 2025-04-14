@@ -12,12 +12,12 @@ spec:
   project: default
   sources:
   - path: argocd-manifests/dev/workloads/applications
-    repoURL: https://github.com/skynetops/talos-kubernetes-manifests.git
+    repoUhRL: https://github.com/Francescoeman/talos-kubernetes-manifests.git
     targetRevision: HEAD
     directory:
       recurse: true
   - path: argocd-manifests/dev/workloads/projects
-    repoURL: https://github.com/skynetops/talos-kubernetes-manifests.git
+    repoURL: https://github.com/Francescoeman/talos-kubernetes-manifests.git
     targetRevision: HEAD
     directory:
       recurse: true

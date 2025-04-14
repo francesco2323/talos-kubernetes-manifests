@@ -16,8 +16,8 @@ spec:
       - name: installCRDs
         value: 'true'
   destination:
+    name: in-cluster
     server: https://kubernetes.default.svc
-    namespace: cert-manager
   syncPolicy:
     automated: {}
     syncOptions:

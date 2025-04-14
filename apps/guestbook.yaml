@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     path: general/helm-guestbook
-    repoURL: https://github.com/Francescoeman/argocd-example-apps
+    repoURL: 'https://github.com/Francescoeman/argocd-example-apps'
     targetRevision: HEAD
   syncPolicy:
     automated:

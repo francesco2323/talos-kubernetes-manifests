@@ -12,13 +12,17 @@ spec:
     helm:
       values: |
         service:
-          type: ClusterIP
+          main:
+            ports:
+              http:
+                port: 80
         ingress:
-          enabled: true
-          hosts:
-            - host: localhost
-              paths:
-                - /
+          main:
+            enabled: false
+        env:
+          TZ: UTC
+          PUID: "1000"
+          PGID: "1000"
   destination:
     server: https://kubernetes.default.svc
     namespace: dashboard

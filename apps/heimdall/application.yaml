@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: heimdall
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://djjudas21.github.io/charts/
+    chart: heimdall
+    targetRevision: 8.5.1
+    helm:
+      parameters:
+      - name: service.type
+        value: LoadBalancer
+      - name: ingress.enabled
+        value: "true"
+      - name: ingress.hosts[0].host
+        value: heimdall.example.com
+      - name: ingress.hosts[0].paths[0]
+        value: /
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: heimdall
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+# filepath: apps/heimdall/application.yaml

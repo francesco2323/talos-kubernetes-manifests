@@ -21,7 +21,7 @@ spec:
         value: /
   destination:
     server: https://kubernetes.default.svc
-    namespace: heimdall
+    namespace: dashboard
   syncPolicy:
     automated:
       prune: true

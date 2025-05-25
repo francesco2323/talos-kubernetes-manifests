@@ -10,15 +10,19 @@ spec:
     chart: heimdall
     targetRevision: 8.5.1
     helm:
-      parameters:
-      - name: service.type
-        value: LoadBalancer
-      - name: ingress.enabled
-        value: "true"
-      - name: ingress.hosts[0].host
-        value: localhost
-      - name: ingress.hosts[0].paths[0]
-        value: /
+      values: |
+        service:
+          type: LoadBalancer
+        ingress:
+          enabled: true
+          hosts:
+            - host: localhost
+              paths:
+                - /
+        ports:
+          http:
+            enabled: true
+            port: 80
   destination:
     server: https://kubernetes.default.svc
     namespace: dashboard

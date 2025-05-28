@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: monitoring
-
-# filepath: /Users/f.emanuele/Documents/talos-kubernetes-manifests/namespaces/monitoring.yaml

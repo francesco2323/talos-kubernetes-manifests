@@ -11,7 +11,8 @@ spec:
     targetRevision: 60.0.2
     helm:
       values: |
-        # custom values if needed
+        crds:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

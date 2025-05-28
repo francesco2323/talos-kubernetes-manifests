@@ -1,0 +1,4 @@
+grafana:
+  adminPassword: "your-secure-password"
+  service:
+    type: ClusterIP

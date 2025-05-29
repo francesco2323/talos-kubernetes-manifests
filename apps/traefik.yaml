@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Francescoeman/talos-kubernetes-manifests/traefik-helm-argocd'
+    repoURL: 'https://github.com/Francescoeman/talos-kubernetes-manifests'
     targetRevision: HEAD
     path: charts/traefik
     helm:

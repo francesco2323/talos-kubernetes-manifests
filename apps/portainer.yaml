@@ -16,7 +16,7 @@ spec:
         service:
           type: LoadBalancer
         persistence:
-          enabled: true
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: portainer

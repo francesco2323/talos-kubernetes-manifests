@@ -2,21 +2,19 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: portainer
-  namespace: argocd  # Argo CD's namespace
+  namespace: argocd
 spec:
   project: default
 
   source:
     repoURL: https://portainer.github.io/k8s/
     chart: portainer
-    targetRevision: 1.0.57  # use latest version or a specific one
+    targetRevision: 1.0.57
     helm:
       releaseName: portainer
-      values: |
-        service:
-          type: LoadBalancer
-        persistence:
-          enabled: false
+      valueFiles:
+        - https://raw.githubusercontent.com/portainer/k8s/master/charts/portainer/values.yaml
+
   destination:
     server: https://kubernetes.default.svc
     namespace: portainer

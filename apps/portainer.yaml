@@ -12,14 +12,36 @@ spec:
     targetRevision: 1.0.57
     helm:
       releaseName: portainer
-      valueFiles:
-        - https://raw.githubusercontent.com/portainer/k8s/master/charts/portainer/values.yaml
+      values: |
+        service:
+          type: LoadBalancer
+
+        persistence:
+          enabled: false
+
+        ingress:
+          enabled: false
+          className: ""
+          annotations: {}
+          hosts:
+            - host: portainer.local
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls: []
+
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 100m
+          limits:
+            memory: 512Mi
+            cpu: 250m
+
+        nodeSelector: {}
+        tolerations: []
+        affinity: {}
 
   destination:
     server: https://kubernetes.default.svc
     namespace: portainer
-
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true

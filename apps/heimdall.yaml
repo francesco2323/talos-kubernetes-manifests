@@ -23,6 +23,8 @@ helm:
       TZ: UTC
       PUID: "1000"
       PGID: "1000"
+  spec:
+    project: default
   destination:
     server: https://kubernetes.default.svc
     namespace: dashboard

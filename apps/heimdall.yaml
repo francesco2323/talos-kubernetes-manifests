@@ -4,34 +4,29 @@ metadata:
   name: heimdall
   namespace: argocd
 spec:
+  project: default
+  source:
+    repoURL: https://github.com/francesco2323/talos-kubernetes-manifests.git
+    targetRevision: HEAD
+    path: .
   destination:
     server: https://kubernetes.default.svc
-    namespace: dashboard # This is the default namespace for the application, but you can change it to your desired namespace.project: default
-  source:
-    repoURL: https://djjudas21.github.io/charts/
-    chart: heimdall
-    targetRevision: 8.5.1
-    helm:
-      values: |
-        service:
-          main:
-            type: NodePort        # 👈 Expose via NodePort
-            ports:
-              http:
-               port: 80
-               nodePort: 32090   # 👈 Optional: set a fixed port (must be in 30000–32767)
-    ingress:
-      main:
-        enabled: false
-    env:
-      TZ: UTC
-      PUID: "1000"
-      PGID: "1000"
-    server: https://kubernetes.default.svc
-    namespace: dashboard
+    namespace: heimdall
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
-# filepath: /Users/f.emanuele/Documents/talos-kubernetes-manifests/apps/heimdall.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: heimdall
+  namespace: heimdall
+spec:
+  type: NodePort
+  selector:
+    app: heimdall
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 30080

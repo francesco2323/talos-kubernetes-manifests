@@ -48,15 +48,3 @@ spec:
   hostPath:
     path: "/mnt/data/pihole"
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: pihole
-  namespace: pihole
-spec:
-  volumeName: pihole
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi

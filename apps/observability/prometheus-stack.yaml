@@ -1,59 +1,22 @@
-
-# Main Prometheus Stack Application
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prom-stack
+  name: observability-stack
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 57.0.3
-    helm:
-      values: |
-        grafana:
-          enabled: true
-          service:
-            type: NodePort
-            port: 80
-            nodePort: 32092
-          persistence:
-            enabled: true
-            type: hostPath
-            accessModes:
-              - ReadWriteOnce
-            size: 2Gi
-            mountPath: /var/lib/grafana
-            hostPath: /var/mnt/grafana
-          adminUser: admin
-          adminPassword: supersecure123
-
-        prometheus:
-          prometheusSpec:
-            storageSpec:
-              volumeClaimTemplate:
-                spec:
-                  accessModes: ["ReadWriteOnce"]
-                  resources:
-                    requests:
-                      storage: 5Gi
-                  hostPath:
-                    path: /var/mnt/prometheus
-                    type: DirectoryOrCreate
-
-        alertmanager:
-          enabled: false
+    repoURL: https://github.com/francesco2323/talos-kubernetes-manifests
+    targetRevision: HEAD
+    path: apps/observability
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
-    namespace: observability
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-  metadata:
-    annotations:
-      argocd.argoproj.io/sync-wave: "1"

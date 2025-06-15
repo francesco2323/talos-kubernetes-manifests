@@ -4,7 +4,9 @@ metadata:
   name: heimdall
   namespace: argocd
 spec:
-  project: default
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: dashboard # This is the default namespace for the application, but you can change it to your desired namespace.project: default
   source:
     repoURL: https://djjudas21.github.io/charts/
     chart: heimdall

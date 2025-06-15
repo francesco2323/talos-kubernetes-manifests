@@ -9,19 +9,15 @@ spec:
     repoURL: https://djjudas21.github.io/charts/
     chart: heimdall
     targetRevision: 8.5.1
-    helm:
+helm:
   values: |
     service:
-      main:
-        type: NodePort
-        ports:
-          http:
-            port: 80
-            nodePort: 32090  # ✅ Questo è il NodePort assegnato
+      type: NodePort
+      port: 80
+      nodePort: 32090
 
     ingress:
-      main:
-        enabled: false
+      enabled: false
 
     env:
       TZ: UTC

@@ -10,24 +10,23 @@ spec:
     chart: heimdall
     targetRevision: 8.5.1
     helm:
-      values: |
-        service:
-          main:
-            type: NodePort
-            ports:
-              http:
-                port: 80
-                nodePort: 32090
+  values: |
+    service:
+      main:
+        type: NodePort
+        ports:
+          http:
+            port: 80
+            nodePort: 32090  # ✅ Questo è il NodePort assegnato
 
+    ingress:
+      main:
+        enabled: false
 
-        ingress:
-          main:
-            enabled: false
-
-        env:
-          TZ: UTC
-          PUID: "1000"
-          PGID: "1000"
+    env:
+      TZ: UTC
+      PUID: "1000"
+      PGID: "1000"
   destination:
     server: https://kubernetes.default.svc
     namespace: dashboard

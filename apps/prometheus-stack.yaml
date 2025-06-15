@@ -11,12 +11,25 @@ spec:
     targetRevision: 57.0.3
     helm:
       values: |
+        crds:
+          enabled: true
+
         grafana:
           enabled: true
           service:
             type: NodePort
             port: 80
             nodePort: 32092
+          persistence:
+            enabled: true
+            type: hostPath
+            accessModes:
+              - ReadWriteOnce
+            size: 2Gi
+            mountPath: /var/lib/grafana
+            hostPath: /var/mnt/grafana
+          adminUser: admin
+          adminPassword: supersecure123
 
         prometheus:
           prometheusSpec:
@@ -40,3 +53,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

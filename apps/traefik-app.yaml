@@ -38,7 +38,7 @@ spec:
           - "--api.dashboard=true"
           - "--certificatesresolvers.le.acme.httpchallenge=true"
           - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
-          - "--certificatesresolvers.le.acme.email=your@email.com"
+          - "--certificatesresolvers.le.acme.email=francescoemanuele32@gmail.com"
           - "--certificatesresolvers.le.acme.storage=/data/acme.json"
   destination:
     server: https://kubernetes.default.svc

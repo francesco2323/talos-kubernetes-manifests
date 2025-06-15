@@ -21,13 +21,6 @@ spec:
         ingress:
           main:
             enabled: false
-        persistence:
-          config:
-            enabled: true
-            mountPath: /config
-            hostPath: /var/data/heimdall 
-            accessModes: ReadWriteOnce
-            size: 1Gi
         env:
           TZ: UTC
           PUID: "1000"

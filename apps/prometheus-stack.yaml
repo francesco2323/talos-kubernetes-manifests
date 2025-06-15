@@ -10,7 +10,7 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: 40.0.0        # use latest chart version
     helm:
-      values: |-
+      values: 
        - apps/kube-values.yaml
   destination:
     server: https://kubernetes.default.svc

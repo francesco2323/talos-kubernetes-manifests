@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: observability-stack
+  name: kube-prometheus-stack
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/francesco2323/talos-kubernetes-manifests
-    targetRevision: HEAD
-    path: apps/observability
-    directory:
-      recurse: true
+    repoURL: https://prometheus-community.github.io/helm-charts
+    chart: kube-prometheus-stack
+    targetRevision: 40.0.0        # use latest chart version
+    helm:
+      values: |-
+       - helm-values/kube-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true

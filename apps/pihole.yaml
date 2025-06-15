@@ -24,5 +24,14 @@ spec:
           password: "YourStrongAdminPassword"
         dnsmasq:
           customDnsEntries:
-            - domain: "example.local"
-              ip: "192.168.1.175"
+            - domain: "fle.api64.de"
+              ip: "192.168.1.175"  # Replace with your actual node IP
+  destination:
+    server: https://kubernetes.default.svc  # <-- REQUIRED
+    namespace: pihole                       # <-- REQUIRED namespace
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

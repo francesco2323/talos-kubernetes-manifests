@@ -25,6 +25,7 @@ spec:
           config:
             enabled: true
             mountPath: /config
+            hostPath: /var/data/heimdall 
             accessModes: ReadWriteOnce
             size: 1Gi
         env:

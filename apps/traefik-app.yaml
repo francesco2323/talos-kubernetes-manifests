@@ -24,11 +24,13 @@ spec:
 
         ports:
           web:
-            expose: true
             port: 80
+            expose:
+              default: true
           websecure:
-            expose: true
             port: 443
+            expose:
+              default: true
 
         additionalArguments:
           - "--entrypoints.web.address=:80"

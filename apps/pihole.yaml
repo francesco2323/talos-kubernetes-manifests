@@ -19,19 +19,32 @@ spec:
             webNodePort: 30080
         persistence:
           enabled: true
-          existingClaim: pihole-pvc
+          existingClaim: "pihole"  # Binds to the PVC below
         admin:
           password: "YourStrongAdminPassword"
         dnsmasq:
           customDnsEntries:
             - domain: "fle.api64.de"
-              ip: "192.168.1.175"  # Replace with your actual node IP
+              ip: "192.168.1.175"
   destination:
-    server: https://kubernetes.default.svc  # <-- REQUIRED
-    namespace: pihole                       # <-- REQUIRED namespace
+    server: https://kubernetes.default.svc
+    namespace: pihole
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pihole
+  namespace: pihole
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 5Gi

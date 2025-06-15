@@ -19,7 +19,7 @@ spec:
             webNodePort: 30080
         persistence:
           enabled: true
-          existingClaim: "pihole"  # Binds to the PVC below
+          existingClaim: "pihole"
         admin:
           password: "YourStrongAdminPassword"
         dnsmasq:
@@ -37,14 +37,26 @@ spec:
       - CreateNamespace=true
 ---
 apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pihole
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/pihole"
+---
+apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: pihole
   namespace: pihole
 spec:
+  volumeName: pihole
   accessModes:
     - ReadWriteOnce
-  storageClassName: manual
   resources:
     requests:
       storage: 5Gi

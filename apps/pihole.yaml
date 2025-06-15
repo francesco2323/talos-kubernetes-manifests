@@ -6,18 +6,23 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://charts.savepointsam.dev
+    repoURL: https://savepointsam.github.io/charts
     chart: pihole
-    targetRevision: "latest"
+    targetRevision: "0.2.0"
     helm:
-      valueFiles:
-        - apps/pihole-values.yaml
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: pihole
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+      valuesObject:
+        server:
+          service:
+            type: NodePort
+            dnsTCPNodePort: 30053
+            dnsUDPNodePort: 30053
+            webNodePort: 30080
+        persistence:
+          enabled: true
+          existingClaim: pihole-pvc
+        admin:
+          password: "YourStrongAdminPassword"
+        dnsmasq:
+          customDnsEntries:
+            - domain: "example.local"
+              ip: "192.168.1.175"

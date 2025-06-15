@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: pihole
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: kube-prometheus-stack
-    targetRevision: 40.0.0        # use latest chart version
+    repoURL: https://charts.savepointsam.dev
+    chart: pihole
+    targetRevision: "latest"
     helm:
-      values: |-
-       - apps/kube-values.yaml
+      valueFiles:
+        - apps/pihole-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: pihole
   syncPolicy:
     automated:
       prune: true

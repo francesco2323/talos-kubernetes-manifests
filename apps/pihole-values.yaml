@@ -1,0 +1,15 @@
+server:
+  service:
+    type: LoadBalancer     # or NodePort/ClusterIP depending on your setup
+    port: 80
+    targetPort: 80
+
+ingress:
+  enabled: false          # Set true if you add an ingress later
+
+persistence:
+  enabled: true
+  existingClaim: pihole-pvc  # or Helm-managed PVC
+
+admin:
+  password: "YourStrongPassword"

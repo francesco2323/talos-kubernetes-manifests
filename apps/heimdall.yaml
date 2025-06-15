@@ -13,23 +13,25 @@ spec:
       values: |
         service:
           main:
-            type: NodePort        # 👈 Expose via NodePort
+            type: NodePort
             ports:
               http:
-               port: 80
-               nodePort: 32090   # 👈 Optional: set a fixed port (must be in 30000–32767)
-    ingress:
-      main:
-        enabled: false
-    env:
-      TZ: UTC
-      PUID: "1000"
-      PGID: "1000"
+                port: 80
+                nodePort: 32090
+
+
+        ingress:
+          main:
+            enabled: false
+
+        env:
+          TZ: UTC
+          PUID: "1000"
+          PGID: "1000"
+  destination:
     server: https://kubernetes.default.svc
     namespace: dashboard
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
-
-# filepath: /Users/f.emanuele/Documents/talos-kubernetes-manifests/apps/heimdall.yaml

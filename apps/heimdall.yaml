@@ -21,6 +21,12 @@ spec:
         ingress:
           main:
             enabled: false
+        persistence:
+          config:
+            enabled: true
+            mountPath: /config
+            accessModes: ReadWriteOnce
+            size: 1Gi
         env:
           TZ: UTC
           PUID: "1000"
